@@ -31,4 +31,15 @@
     [UIView commitAnimations];
 }
 
++ (void)animateWithKeyboardNotification:(NSNotification *)notification
+                             animations:(void(^)(CGRect keyboardFrame))animations
+                             completion:(void (^)(BOOL finished))completion {
+    [self animateWithKeyboardNotification:notification animations:animations];
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    if (completion) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            completion(YES);
+        });
+    }
+}
 @end

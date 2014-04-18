@@ -13,4 +13,8 @@
 
 + (void)animateWithKeyboardNotification:(NSNotification *)notification
                              animations:(void(^)(CGRect keyboardFrame))animations;
+
++ (void)animateWithKeyboardNotification:(NSNotification *)notification
+                             animations:(void(^)(CGRect keyboardFrame))animations
+                             completion:(void (^)(BOOL finished))completion;
 @end
